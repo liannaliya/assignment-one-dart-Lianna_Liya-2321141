@@ -31,13 +31,14 @@ abstract class Vehicle {
 
   // Concrete method
   void displayInfo() {
+    print("Vehicle Info: $year $brand $model");
     // TODO: Display vehicle information
   }
 
   // Add a method to calculate vehicle age (current year - vehicle year)
   int calculateAge() {
     // TODO: Calculate and return vehicle age
-    return 0;
+    return DateTime.now().year - year;
   }
 }
 
@@ -53,16 +54,19 @@ class Car extends Vehicle {
 
   @override
   void start() {
+    print("Starting the car engine...");
     // TODO: Implement car start method
   }
 
   @override
   void stop() {
+    print("Stopping the car engine...");
     // TODO: Implement car stop method
   }
 
   @override
   void displayInfo() {
+    print("Vehicle Info: $year $brand $model ($numberOfDoors doors)");
     // TODO: Override to show car-specific info as shown in expected output
   }
 }
@@ -78,16 +82,20 @@ class Motorcycle extends Vehicle {
 
   @override
   void start() {
+    print("Starting the motorcycle engine...");
     // TODO: Implement motorcycle start method
   }
 
   @override
   void stop() {
+    print("Stopping the motorcycle engine...");
+    
     // TODO: Implement motorcycle stop method
   }
 
   @override
   void displayInfo() {
+    print("Vehicle Info: $year $brand $model (Has windshield: $hasWindshield)");
     // TODO: Override to show motorcycle-specific info as shown in expected output
   }
 }
@@ -99,4 +107,21 @@ void main() {
   // TODO: Loop through the list and call displayInfo(), start(), and stop()
 
   // TODO: Print the age of each vehicle using calculateAge()
+  // List of vehicles (polymorphism: both are treated as Vehicle)
+  List<Vehicle> vehicles = [
+    Car("Toyota", "Camry", 2020, 4),
+    Motorcycle("Honda", "CBR", 2021, true),
+  ];
+
+  // Same calls, different behavior for each type
+  for (Vehicle vehicle in vehicles) {
+    vehicle.displayInfo();
+    vehicle.start();
+    vehicle.stop();
+    print("");
+  }
+
+  print("Car age: ${vehicles[0].calculateAge()} years");
+  print("Motorcycle age: ${vehicles[1].calculateAge()} years");
+  
 }
